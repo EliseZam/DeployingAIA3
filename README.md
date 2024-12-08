@@ -48,7 +48,7 @@ Steps to Deploy:
     Install Python and Dependencies on the Instance:
         Connect to the EC2 instance via SSH:
 
-ssh -i <YOUR_KEY.pem> ubuntu@<EC2_PUBLIC_IP>
+ssh -i AnimalClassificationA4.pem ubuntu@34.238.40.72
 
 Install Python and Pip:
 
@@ -57,7 +57,7 @@ sudo apt install python3-pip -y
 
 Transfer project files to the instance using SCP:
 
-scp -i <YOUR_KEY.pem> -r /Users/EliseZamora_1/Documents/School/Education/Animal_Classification_Project/Assignment 3 ubuntu@<EC2_PUBLIC_IP>:~/project
+scp -i AnimalClassificationA4.pem -r /Users/EliseZamora_1/Documents/School/Education/Animal_Classification_Project/Assignment 3 ubuntu@34.238.40.72:~/project
 
 Navigate to the project directory and install dependencies:
 
@@ -70,7 +70,7 @@ Run the Application:
 
         streamlit run app.py --server.port 8501 --server.enableCORS false
 
-        The application will be accessible at http://<EC2_PUBLIC_IP>:8501.
+        The application will be accessible at http://34.238.40.72:8501.
 
 Troubleshooting
 
@@ -79,10 +79,3 @@ Troubleshooting
     Python Compatibility:
         Ensure Python 3.9 is installed on the EC2 instance.
 
-Contact
-
-For questions or issues, please contact:
-
-    Name: [Your Name]
-    Email: [Your Email]
-    # DeployingAIA3
