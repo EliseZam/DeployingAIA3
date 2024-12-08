@@ -57,7 +57,7 @@ sudo apt install python3-pip -y
 
 Transfer project files to the instance using SCP:
 
-scp -i <YOUR_KEY.pem> -r <LOCAL_PROJECT_PATH> ubuntu@<EC2_PUBLIC_IP>:~/project
+scp -i <YOUR_KEY.pem> -r /Users/EliseZamora_1/Documents/School/Education/Animal_Classification_Project/Assignment 3 ubuntu@<EC2_PUBLIC_IP>:~/project
 
 Navigate to the project directory and install dependencies:
 
