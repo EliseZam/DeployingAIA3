@@ -21,6 +21,7 @@ Setup and Installation
 1. Clone the Repository
 
 git clone https://github.com/EliseZam/DeployingAIA3.git
+
 cd "/Users/EliseZamora_1/Documents/School/Education/Animal_Classification_Project/Assignment 3"
 
 2. Install Dependencies
