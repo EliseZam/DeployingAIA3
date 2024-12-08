@@ -20,7 +20,7 @@ Features
 Setup and Installation
 1. Clone the Repository
 
-git clone <YOUR_REPO_URL>
+git clone (https://github.com/EliseZam/DeployingAIA3.git)
 cd <REPO_FOLDER>
 
 2. Install Dependencies
