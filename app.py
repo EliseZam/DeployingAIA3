@@ -1,27 +1,50 @@
 import streamlit as st
-from tensorflow.keras.models import load_model
+import nbformat
+from nbconvert import PythonExporter
+import os
+import tensorflow as tf
 from tensorflow.keras.preprocessing.image import img_to_array
 import numpy as np
 from PIL import Image
 
-# Load the pre-trained model
-try:
-    model = load_model("Custom_Structure_Animal_Classification_VGG16_v2.h5")
-    st.success("Model loaded successfully!")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
+# Function to execute the Jupyter Notebook
+def execute_notebook(notebook_path):
+    """
+    Executes a Jupyter notebook and extracts the model created within.
+    """
+    try:
+        # Convert Jupyter notebook to Python script
+        exporter = PythonExporter()
+        python_script, _ = exporter.from_filename(notebook_path)
+
+        # Execute the Python script
+        exec(python_script, globals())
+        st.success("Jupyter Notebook executed successfully!")
+        return globals().get('model')  # Expect 'model' variable in the notebook
+    except Exception as e:
+        st.error(f"Error executing Jupyter Notebook: {e}")
+        st.stop()
+
+# Define notebook path
+notebook_path = "/Users/EliseZamora_1/Documents/School/Education/Animal_Classification_Project/Assignment 3/DeployingAIA3/Custom_Structure_Animal_Classification_VGG16_v3.ipynb"
+
+if not os.path.exists(notebook_path):
+    st.error(f"Notebook not found at path: {notebook_path}")
     st.stop()
 
+st.info("Executing the Jupyter Notebook...")
+model = execute_notebook(notebook_path)
+
 # Class names
-class_names = ["Class 0", "Class 1", "Class 2", "Class 3"]  # Replace with actual names
+class_names = ["Red Fox", "Black Bear", "Beaver", "Mink"]  # Replace with actual class labels from the notebook
 
 # Function to preprocess images
 def preprocess_image(image):
     img = image.resize((224, 224))  # Resize to VGG16 input size
-    img_array = img_to_array(img) / 255.0  # Normalize the image
+    img_array = img_to_array(image) / 255.0  # Normalize the image
     return np.expand_dims(img_array, axis=0)
 
-# Streamlit UI
+# Streamlit App Interface
 st.title("Animal Classification App")
 st.sidebar.header("Instructions")
 st.sidebar.write("Upload an image of an animal to classify it.")
